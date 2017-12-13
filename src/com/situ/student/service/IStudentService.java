@@ -1,5 +1,12 @@
 package com.situ.student.service;
 
-public class IStudentService {
+import java.util.List;
+
+import com.situ.student.entity.Student;
+
+public interface IStudentService {
+
+	List<Student> findAll();
+
 
 }
