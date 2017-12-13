@@ -3,8 +3,11 @@ package com.situ.student.view;
 import java.util.List;
 import java.util.Scanner;
 
+import org.omg.CosNaming.NamingContextExtPackage.AddressHelper;
+
 import com.situ.student.controller.StudentController;
 import com.situ.student.entity.Student;
+import com.situ.student.util.Constant;
 
 /*
  * 界面，纯粹就是为了展示
@@ -41,7 +44,7 @@ public class StudentView {
 				findAll();
 				break;
 			case 2:// 添加
-
+				add();
 				break;
 			case 3:// 修改
 
@@ -54,7 +57,40 @@ public class StudentView {
 				break;
 			}
 		}
-		
+	}
+
+	private void add() {
+		while (true) {
+			System.out.println("请输入学生姓名：");
+			String name = scanner.next();
+			System.out.println("请输入年龄：");
+			Integer age = scanner.nextInt();
+			System.out.println("请输入性别：");
+			String gender = scanner.next();
+			System.out.println("请输入地址：");
+			String address = scanner.next();
+			
+			int result = studentController.add(name, age, gender, address);
+			switch (result) {
+			case Constant.ADD_SUCCESS:
+				System.out.println("添加成功");
+				break;
+			case Constant.ADD_FAIL:
+				System.err.println("添加数据库失败");
+				break;
+			case Constant.ADD_NAME_REPEAT:
+				System.err.println("用户名重复");
+				break;
+			default:
+				break;
+			}
+			
+			System.out.println("是否继续添加学生：1：继续 0：退出");
+			int quit = scanner.nextInt();
+			if (quit == 0) {
+				break;
+			}
+		}
 	}
 
 	private void findAll() {

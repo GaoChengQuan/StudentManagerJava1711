@@ -80,6 +80,28 @@ public class StudentDaoImpl implements IStudentDao{
 		}
 		return list;
 	}
+
+	@Override
+	public boolean checkName(String name) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		String sql = "SELECT NAME FROM student WHERE NAME=?;";
+		try {
+			connection = JDBCUtil.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(connection, preparedStatement, resultSet);
+		}
+		return false;
+	}
 	
 	
 	

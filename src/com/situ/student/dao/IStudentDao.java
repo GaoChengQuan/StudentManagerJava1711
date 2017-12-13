@@ -22,4 +22,11 @@ public interface IStudentDao {
 	public abstract Student findById(Integer id);
 	
 	public abstract List<Student> findAll();
+
+	/**
+	 * 检测此用户名是否存在
+	 * @param name 用户名
+	 * @return 用户名存在：true  不存在：false
+	 */
+	public abstract boolean checkName(String name);
 }
