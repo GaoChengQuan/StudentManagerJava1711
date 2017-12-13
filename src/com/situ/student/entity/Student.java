@@ -15,6 +15,14 @@ public class Student implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Student(String name, Integer age, String gender, String address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.address = address;
+	}
+
 	public Student(Integer id, String name, Integer age, String gender, String address) {
 		super();
 		this.id = id;

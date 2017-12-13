@@ -28,7 +28,7 @@ public class JDBCUtil {
 	static {
 		InputStream inputStream;
 		try {
-			inputStream = new FileInputStream("db.properties");
+			inputStream = new FileInputStream("src/db.properties");
 			Properties properties = new Properties();
 			properties.load(inputStream);
 			className = properties.getProperty("className");
