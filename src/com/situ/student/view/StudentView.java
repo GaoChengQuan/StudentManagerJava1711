@@ -69,8 +69,10 @@ public class StudentView {
 			String gender = scanner.next();
 			System.out.println("请输入地址：");
 			String address = scanner.next();
+			System.out.println("请输入出生日期：");
+			String birthday = scanner.next();
 			
-			int result = studentController.add(name, age, gender, address);
+			int result = studentController.add(name, age, gender, address, birthday);
 			switch (result) {
 			case Constant.ADD_SUCCESS:
 				System.out.println("添加成功");

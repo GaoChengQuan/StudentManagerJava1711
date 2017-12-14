@@ -1,6 +1,7 @@
 package com.situ.student.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class StudentDaoImpl implements IStudentDao{
 	public int add(Student student) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String sql = "INSERT INTO student(NAME,age,gender,address) VALUES(?,?,?,?);";
+		String sql = "INSERT INTO student(NAME,age,gender,address,birthday,addTime) VALUES(?,?,?,?,?,?);";
 		try {
 			connection = JDBCUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
@@ -25,6 +26,9 @@ public class StudentDaoImpl implements IStudentDao{
 			preparedStatement.setInt(2, student.getAge());
 			preparedStatement.setString(3, student.getGender());
 			preparedStatement.setString(4, student.getAddress());
+			//the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date.
+			preparedStatement.setDate(5, new java.sql.Date(student.getBirthday().getTime()));
+			preparedStatement.setDate(6, new java.sql.Date(student.getAddTime().getTime()));
 			int result = preparedStatement.executeUpdate();
 			return result;
 		} catch (SQLException e) {
@@ -58,7 +62,7 @@ public class StudentDaoImpl implements IStudentDao{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		String sql = "SELECT id,NAME,age,gender,address FROM student;";
+		String sql = "SELECT id,NAME,age,gender,address,birthday,addTime FROM student;";
 		List<Student> list = new ArrayList<Student>();
 		try {
 			connection = JDBCUtil.getConnection();
@@ -70,7 +74,9 @@ public class StudentDaoImpl implements IStudentDao{
 				Integer age = resultSet.getInt("age");
 				String address = resultSet.getString("address");
 				String gender = resultSet.getString("gender");
-				Student student = new Student(id, name, age, gender, address);
+				Date birthday = resultSet.getDate("birthday");//java.sql.Date
+				Date addTime = resultSet.getDate("addTime");//java.sql.Date
+				Student student = new Student(id, name, age, gender, address,addTime, birthday);
 				list.add(student);
 			}
 		} catch (SQLException e) {

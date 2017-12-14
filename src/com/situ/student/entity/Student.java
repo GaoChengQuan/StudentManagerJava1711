@@ -1,6 +1,7 @@
 package com.situ.student.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Student implements Serializable {
 
@@ -9,31 +10,52 @@ public class Student implements Serializable {
 	private Integer age;
 	private String gender;
 	private String address;
+	private Date birthday;
+	private Date addTime;// 入学时间，当前生成学生对象时间
 
 	public Student() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Student(String name, Integer age, String gender, String address) {
+	public Student(String name, Integer age, String gender, String address, Date birthday, Date addTime) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.address = address;
+		this.birthday = birthday;
+		this.addTime = addTime;
 	}
 
-	public Student(Integer id, String name, Integer age, String gender, String address) {
+	public Student(Integer id, String name, Integer age, String gender, String address, Date birthday, Date addTime) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
 		this.address = address;
+		this.birthday = birthday;
+		this.addTime = addTime;
+	}
+
+	public Date getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
 	}
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public void setId(Integer id) {
@@ -75,7 +97,7 @@ public class Student implements Serializable {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", address=" + address
-				+ "]";
+				+ ", birthday=" + birthday + ", addTime=" + addTime + "]";
 	}
 
 }

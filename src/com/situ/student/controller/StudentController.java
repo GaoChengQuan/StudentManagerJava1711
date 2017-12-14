@@ -1,5 +1,8 @@
 package com.situ.student.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.situ.student.entity.Student;
@@ -20,8 +23,16 @@ public class StudentController {
 		return studentService.findAll();
 	}
 
-	public int add(String name, Integer age, String gender, String address) {
-		Student student = new Student(name, age, gender, address);
+	public int add(String name, Integer age, String gender, 
+			String address, String birthday) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = simpleDateFormat.parse(birthday);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Student student = new Student(name, age, gender, address, date, new Date());
 		return studentService.add(student);
 	}
 	
