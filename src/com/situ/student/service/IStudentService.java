@@ -17,4 +17,6 @@ public interface IStudentService {
 	 */
 	int add(Student student);
 
+	List<Student> showStudentAndBanjiInfo();
+
 }

@@ -35,5 +35,9 @@ public class StudentController {
 		Student student = new Student(name, age, gender, address, date, new Date());
 		return studentService.add(student);
 	}
+
+	public List<Student> showStudentAndBanjiInfo() {
+		return studentService.showStudentAndBanjiInfo();
+	}
 	
 }

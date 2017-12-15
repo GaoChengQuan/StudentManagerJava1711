@@ -21,6 +21,8 @@ public interface IStudentDao {
 	
 	public abstract Student findById(Integer id);
 	
+	public abstract List<Student> findByName(String name);
+	
 	public abstract List<Student> findAll();
 
 	/**
@@ -29,4 +31,6 @@ public interface IStudentDao {
 	 * @return 用户名存在：true  不存在：false
 	 */
 	public abstract boolean checkName(String name);
+
+	public abstract List<Student> showStudentAndBanjiInfo();
 }

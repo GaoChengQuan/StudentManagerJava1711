@@ -35,4 +35,9 @@ public class StudentServiceImpl implements IStudentService {
 		}
 	}
 
+	@Override
+	public List<Student> showStudentAndBanjiInfo() {
+		return studentDao.showStudentAndBanjiInfo();
+	}
+
 }

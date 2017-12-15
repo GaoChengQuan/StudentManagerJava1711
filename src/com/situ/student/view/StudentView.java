@@ -30,6 +30,7 @@ public class StudentView {
 			System.out.println("2、添加");
 			System.out.println("3、修改");
 			System.out.println("4、删除");
+			System.out.println("5、查询学生信息和班级信息");
 			System.out.println("0、退出");
 			System.out.println("请选择：");
 			int selected = scanner.nextInt();
@@ -52,10 +53,21 @@ public class StudentView {
 			case 4:// 删除
 
 				break;
+			case 5:
+				showStudentAndBanjiInfo();
+				break;
 
 			default:
 				break;
 			}
+		}
+	}
+
+	private void showStudentAndBanjiInfo() {
+		List<Student> list = studentController.showStudentAndBanjiInfo();
+		for (Student student : list) {
+			//System.out.println(student);
+			System.out.println(student.getId() + "\t" + student.getName() + "\t" + student.getBanji().getName());
 		}
 	}
 
